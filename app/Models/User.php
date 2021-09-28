@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
+use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -12,10 +15,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    use HasKey;
     use HasFactory;
-    use HasProfilePhoto;
     use Notifiable;
+    use SoftDeletes;
+    use HasApiTokens;
+    use HasProfilePhoto;
     use TwoFactorAuthenticatable;
 
     /**
@@ -24,9 +29,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'key',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'theme',
     ];
 
     /**
