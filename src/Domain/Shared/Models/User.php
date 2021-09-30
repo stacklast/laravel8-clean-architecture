@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Models;
+namespace Domain\Shared\Models;
 
+use Domain\Blogging\Models\Post;
 use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
