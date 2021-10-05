@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Domain\Blogging\Models;
 
+use Domain\Blogging\Models\Builders\PostBuilder;
 use Domain\Shared\Models\Concerns\HasSlug;
 use Domain\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,5 +44,10 @@ class Post extends Model
             related: User::class,
             foreignKey: 'user_id',
         );
+    }
+
+    public function newEloquentBuilder($query): PostBuilder
+    {
+        return new PostBuilder( $query );
     }
 }
